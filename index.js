@@ -1,6 +1,14 @@
-import { UserResponse, AIResponse } from "Responses.js";
+import { UserResponse, AIResponse } from "./Responses.js";
 //todo replace with external call
-import { API_KEY } from "keys.js";
+import { API_KEY } from "./keys.js";
 
 const container = document.getElementById("container");
-const uR = new UserResponse("Hello", "Bye");
+const uR = new AIResponse();
+
+async function main() {
+  await uR.sendResponse();
+  uR.render();
+  console.log(uR);
+}
+
+main();
