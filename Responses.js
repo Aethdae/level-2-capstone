@@ -1,16 +1,18 @@
-import { API_KEY } from "/keys.js";
+const baseCardClasses =
+  "max-w-[70%] even:self-start odd:self-end max-w-[70%] p-2 rounded-3xl border-2 shadow-xl even:bg-blue-300 odd:bg-green-300";
 
 export class UserResponse {
-  constructor(previous, response) {
+  constructor(previous, response, apiKey) {
     this.previous = previous;
     this.response = response;
+    this.apiKey = apiKey;
   }
   async sendResponse() {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-goog-api-key": API_KEY,
+        "x-goog-api-key": this.apiKey,
       },
       body: JSON.stringify({
         model: "gemini-3-flash-preview",
@@ -39,6 +41,8 @@ export class UserResponse {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
+    bubble.className = baseCardClasses;
+
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
@@ -55,15 +59,17 @@ export class UserResponse {
 }
 
 export class AIResponse {
-  constructor(previous, response) {
+  constructor(previous, response, apiKey) {
     this.previous = previous;
     this.response = response;
+    this.key = apiKey;
   }
   render() {
     const container = document.getElementById("container");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
+    bubble.className = baseCardClasses;
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
@@ -71,16 +77,15 @@ export class AIResponse {
 }
 
 export class AIBeginning {
-  constructor(previous, response) {
-    this.previous = previous;
-    this.response = response;
+  constructor(apiKey) {
+    this.apiKey = apiKey;
   }
   async getInitial() {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-goog-api-key": API_KEY,
+        "x-goog-api-key": this.apiKey,
       },
       body: JSON.stringify({
         model: "gemini-3-flash-preview",
@@ -109,6 +114,8 @@ export class AIBeginning {
     const container = document.getElementById("container");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
+
+    bubble.className = baseCardClasses;
 
     text.textContent = this.response;
     container.appendChild(bubble);
