@@ -10,11 +10,36 @@
     <script type="module" src="keys.js" defer></script>
   </head>
   <body>
-    <main>
+    <main class="h-[100vh] bg-gray-900">
       <section
         id="container"
-        class="flex flex-col w-[80vw] md:w-[60vw]"
+        class="flex bg-gray-200 mx-auto border-2 border-black mb-4 rounded-2xl p-2 flex-col w-[80vw] md:w-[60vw]"
       ></section>
+      <form id="responseForm">
+        <div
+          class="flex bg-black justify-center gap-10 items-center mx-auto border-2 rounded-2xl p-4 w-[60vw]"
+        >
+          <label
+            class="text-white border-2 w-[50%] rounded-xl p-2 bg-gray-400 flex flex-col"
+          >
+            Reponse:
+            <textarea
+              class="bg-gray-200 text-black rounded-xl border-2 border-black p-2"
+              name="textArea"
+              id="textArea"
+              placeholder="Enter a response!"
+            ></textarea>
+          </label>
+          <label>
+            <button
+              class="bg-gray-400 rounded-xl border-2 border-black p-8 transition-all duration-200 delay-100 hover:border-white hover:bg-black hover:text-white cursor-pointer"
+              id="submitButton"
+            >
+              Submit
+            </button>
+          </label>
+        </div>
+      </form>
     </main>
   </body>
 </html>

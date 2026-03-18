@@ -5,13 +5,6 @@ export class UserResponse {
     this.previous = previous;
     this.response = response;
   }
-}
-
-export class AIResponse {
-  constructor(previous, response) {
-    this.previous = previous;
-    this.response = response;
-  }
   async sendResponse() {
     const options = {
       method: "POST",
@@ -20,9 +13,9 @@ export class AIResponse {
         "x-goog-api-key": API_KEY,
       },
       body: JSON.stringify({
-        model: "gemini-2.5-flash-lite",
-        input:
-          "You are a chatbot designed to help people create monsters for tabletop RPG games. Keep your responses system agnostic to reduce the user needing to convert mechanics. Start this first response with 'What can I help create today: a boss, a minion, or something else?'",
+        model: "gemini-3-flash-preview",
+        input: this.response,
+        previous_interaction_id: this.previous,
       }),
     };
     try {
@@ -30,6 +23,80 @@ export class AIResponse {
         "https://generativelanguage.googleapis.com/v1beta/interactions",
         options,
       );
+      if (res.status === 429 || res.status === 403) {
+        this.renderError(res.status);
+        return;
+      }
+      const data = await res.json();
+      const aiRes = new AIResponse(data.id, data.outputs[1].text);
+      return aiRes;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  render() {
+    const container = document.getElementById("container");
+    const bubble = document.createElement("div");
+    const text = document.createElement("p");
+
+    text.textContent = this.response;
+    container.appendChild(bubble);
+    bubble.appendChild(text);
+  }
+  renderError(status) {
+    const container = document.getElementById("container");
+    const bubble = document.createElement("div");
+    const text = document.createElement("p");
+
+    text.textContent = `Request failed with a ${status} error. Please try again later.`;
+    container.appendChild(bubble);
+    bubble.appendChild(text);
+  }
+}
+
+export class AIResponse {
+  constructor(previous, response) {
+    this.previous = previous;
+    this.response = response;
+  }
+  render() {
+    const container = document.getElementById("container");
+    const bubble = document.createElement("div");
+    const text = document.createElement("p");
+
+    text.textContent = this.response;
+    container.appendChild(bubble);
+    bubble.appendChild(text);
+  }
+}
+
+export class AIBeginning {
+  constructor(previous, response) {
+    this.previous = previous;
+    this.response = response;
+  }
+  async getInitial() {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": API_KEY,
+      },
+      body: JSON.stringify({
+        model: "gemini-3-flash-preview",
+        input:
+          "You are a chatbot designed to help people create monsters for tabletop RPG games. Keep your responses system agnostic to reduce the user needing to convert mechanics. Start this first response with 'Welcome to the Monster Creation AI Assistant. What can I help create today: a boss, a minion, or something else?'",
+      }),
+    };
+    try {
+      const res = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/interactions",
+        options,
+      );
+      if (res.status === 429 || res.status === 403) {
+        this.renderError(res.status);
+        return;
+      }
       const data = await res.json();
       this.previous = data.id;
       this.response = data.outputs[1].text;
@@ -44,6 +111,15 @@ export class AIResponse {
     const text = document.createElement("p");
 
     text.textContent = this.response;
+    container.appendChild(bubble);
+    bubble.appendChild(text);
+  }
+  renderError(status) {
+    const container = document.getElementById("container");
+    const bubble = document.createElement("div");
+    const text = document.createElement("p");
+
+    text.textContent = `Request failed with a ${status} error. Please try again later.`;
     container.appendChild(bubble);
     bubble.appendChild(text);
   }
