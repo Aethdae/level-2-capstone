@@ -1,5 +1,7 @@
 import { UserResponse, AIResponse, AIBeginning } from "./Responses.js";
 import { getKey } from "./keys.js";
+import { ChatHandler } from "./ChatHandler.js";
+import { startBattle, doBattle } from "./BattleHandler.js";
 
 const container = document.getElementById("container");
 const chatContainer = document.getElementById("chatContainer");
@@ -13,17 +15,16 @@ main();
 async function main() {
   chatHeader.addEventListener("click", () => {
     isChatDisplayed = !isChatDisplayed;
-    if (isChatDisplayed) {
-      if (chatContainer.clientWidth < 400) {
-        chatContainer.classList.add("bottom-[14rem]");
-        chatContainer.classList.remove("bottom-[-12rem]");
-      }
-    } else {
-      if (chatContainer.clientWidth < 400) {
-        chatContainer.classList.remove("bottom-[14rem]");
-        chatContainer.classList.add("bottom-[-12rem]");
-      }
-    }
+    ChatHandler(isChatDisplayed);
+  });
+  startBattle();
+
+  //! Remove before post
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    fakeRender(
+      "Sample text ofeiaj foieaj foieaj foieaj f ofeiaj foieaj foieaj foieaj f ",
+    );
   });
   //const apiKey = await getKey();
   //showChatInitial();
@@ -54,70 +55,7 @@ function showChatInitial() {
   isChatDisplayed = true;
 }
 
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-fakeRender(
-  "texts aefoij aefoij aefoij aefoij aefoij aeofij aeofij aefoija feoiaj efoaijfe aoifej aofiej aofeija ofieja ofeiaj foieaj foieaj foieaj foeaijf eaoifj eaoifj eaoifj aoeifj asodifj aiosdfjhgv aieur5hg laedjrfvn alerufvh adkrfjvna elriuvha dlriuvha elirv",
-);
-
+//! Remove before post
 function fakeRender(text) {
   const container = document.getElementById("outputContainer");
   const bubble = document.createElement("div");
@@ -129,4 +67,5 @@ function fakeRender(text) {
   text2.textContent = text;
   container.appendChild(bubble);
   bubble.appendChild(text2);
+  container.scrollTop = container.scrollHeight;
 }

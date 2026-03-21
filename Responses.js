@@ -46,6 +46,7 @@ export class UserResponse {
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
+    container.scrollTop = container.scrollHeight;
   }
   renderError(status) {
     const container = document.getElementById("outputContainer");
@@ -73,6 +74,7 @@ export class AIResponse {
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
+    container.scrollTop = container.scrollHeight;
   }
 }
 
@@ -120,6 +122,7 @@ export class AIBeginning {
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
+    container.scrollTop = container.scrollHeight;
   }
   renderError(status) {
     const container = document.getElementById("outputContainer");
