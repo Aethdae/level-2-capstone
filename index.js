@@ -1,22 +1,21 @@
 import { UserResponse, AIResponse, AIBeginning } from "./Responses.js";
 import { getKey } from "./keys.js";
-import { ChatHandler } from "./ChatHandler.js";
-import { startBattle, doBattle } from "./BattleHandler.js";
+import { chatHandler, createEvent } from "./ChatHandler.js";
+import { startBattle } from "./BattleHandler.js";
 
 const container = document.getElementById("container");
 const chatContainer = document.getElementById("chatContainer");
 const form = document.getElementById("responseForm");
 const textArea = document.getElementById("textArea");
 const chatHeader = document.getElementById("chatHeader");
+const altButton = document.getElementById("altButton");
 
 let isChatDisplayed = false;
 main();
 
 async function main() {
-  chatHeader.addEventListener("click", () => {
-    isChatDisplayed = !isChatDisplayed;
-    ChatHandler(isChatDisplayed);
-  });
+  createEvent(altButton);
+  createEvent(chatHeader);
   startBattle();
 
   //! Remove before post
@@ -47,12 +46,6 @@ async function main() {
   begin.render();
   prevReponseID = begin.previous;
   console.log(prevReponseID);
-}
-
-function showChatInitial() {
-  chatContainer.classList.add("bottom-[14rem]");
-  chatContainer.classList.remove("bottom-[-24rem]");
-  isChatDisplayed = true;
 }
 
 //! Remove before post

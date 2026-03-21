@@ -20,31 +20,53 @@
   <body class="bg-gray-950">
     <header class="bg-gray-200 py-4 border-b border-gray-400">
       <h1 class="text-black text-3xl font-bold text-center">
-        The Enemies You Love to Hate
+        Enemies You Love to Hate
       </h1>
     </header>
     <main class="">
-      <section class="h-[60vh] flex flex-col" id="hero">
+      <section class="h-[60vh] flex flex-col gap-4" id="hero">
         <div
-          class="flex justify-center text-white bg-(image:'images/grid.png')"
+          class="flex justify-center text-white bg-gray-800 outline-2 outline-offset-[-6px] py-2 rounded-2xl"
         >
           <p>Do your tabletop rpg battles feel like this:</p>
         </div>
-        <div class="bg-gray-400 h-[250px] relative rounded-4xl">
-          <img
-            id="warrior"
-            class="absolute top-[50%] left-[10%] transition-all duration-400 ease-in-out"
-            src="images/warrior.png"
-            alt="pixel art, poorly drawn knight in armor"
-          />
-          <img
-            id="dragon"
-            class="absolute top-[10%] left-[60%] transition-all duration-400 ease-in-out"
-            src="images/drag.png"
-            alt="pixel art, poorly drawn dragon"
-          />
+        <div id="battleContainer" class="flex justify-center">
+          <div
+            class="bg-gray-400 min-h-[250px] w-[90%] relative rounded-4xl bg-[url('images/grid.png')]"
+          >
+            <img
+              id="warrior"
+              class="absolute top-[50%] left-[10%] transition-all duration-400 ease-in-out"
+              src="images/warrior.png"
+              alt="pixel art, poorly drawn knight in armor"
+            />
+            <img
+              id="dragon"
+              class="absolute top-[10%] left-[60%] transition-all duration-400 ease-in-out"
+              src="images/drag.png"
+              alt="pixel art, poorly drawn dragon"
+            />
+          </div>
         </div>
-        <div class=""></div>
+        <div
+          class="flex mx-30 gap-6 flex-col items-center text-white bg-gray-800 outline-2 outline-offset-[-6px] py-2 my-3 rounded-2xl"
+        >
+          <h2 class="text-2xl">Well no more!</h2>
+          <hr />
+          <p class="text-lg">Try our state-of-the-art* AI helper!</p>
+          <ul
+            class="*:italic bg-white text-black border-2 border-black px-6 py-3 rounded-4xl"
+          >
+            <li>Create monsters in a flash!</li>
+            <li>No more boring encounters.</li>
+            <li>Seemlessly works in any system.</li>
+          </ul>
+        </div>
+        <div
+          class="flex justify-center mx-auto max-w-[50%] text-white bg-gray-800 outline-2 outline-offset-[-6px] py-2 rounded-2xl cursor-pointer"
+        >
+          <h2 id="altButton" class="min-w-[300px] text-center">Try it out!</h2>
+        </div>
       </section>
     </main>
     <div
