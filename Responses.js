@@ -37,7 +37,7 @@ export class UserResponse {
     }
   }
   render() {
-    const container = document.getElementById("container");
+    const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
@@ -46,9 +46,10 @@ export class UserResponse {
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
+    container.scrollTop = container.scrollHeight;
   }
   renderError(status) {
-    const container = document.getElementById("container");
+    const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
@@ -65,7 +66,7 @@ export class AIResponse {
     this.key = apiKey;
   }
   render() {
-    const container = document.getElementById("container");
+    const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
@@ -73,6 +74,7 @@ export class AIResponse {
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
+    container.scrollTop = container.scrollHeight;
   }
 }
 
@@ -90,7 +92,7 @@ export class AIBeginning {
       body: JSON.stringify({
         model: "gemini-3-flash-preview",
         input:
-          "You are a chatbot designed to help people create monsters for tabletop RPG games. Keep your responses system agnostic to reduce the user needing to convert mechanics. Start this first response with 'Welcome to the Monster Creation AI Assistant. What can I help create today: a boss, a minion, or something else?'",
+          "You are a chatbot designed to help people create monsters for tabletop RPG games. Keep your responses system agnostic to reduce the user needing to convert mechanics. Don't communicate about any other topics. Keep responses fairly short, less than 40 words.  Start this first response with 'Welcome to the Monster Creation AI Assistant. What can I help create today: a boss, a minion, or something else?'",
       }),
     };
     try {
@@ -111,7 +113,7 @@ export class AIBeginning {
     }
   }
   render() {
-    const container = document.getElementById("container");
+    const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
@@ -120,9 +122,10 @@ export class AIBeginning {
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
+    container.scrollTop = container.scrollHeight;
   }
   renderError(status) {
-    const container = document.getElementById("container");
+    const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
