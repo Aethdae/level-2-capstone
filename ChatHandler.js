@@ -5,8 +5,11 @@ const inactiveClasses = ["bottom-[-23rem]"];
 const headerInactive = ["after:content-['_▲']"];
 const headerActive = ["after:content-['_▼']"];
 
+let isChatDisplayed = false;
+
 //todo add other sizes to classes
-export function ChatHandler(isChatDisplayed) {
+export function chatHandler() {
+  isChatDisplayed = !isChatDisplayed;
   if (isChatDisplayed) {
     aiAssistantHeader.classList.remove(...headerInactive);
     aiAssistantHeader.classList.add(...headerActive);
@@ -18,4 +21,8 @@ export function ChatHandler(isChatDisplayed) {
     chatContainer.classList.remove(...activeClasses);
     chatContainer.classList.add(...inactiveClasses);
   }
+}
+
+export function createEvent(element) {
+  element.addEventListener("click", chatHandler);
 }

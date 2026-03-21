@@ -4,20 +4,21 @@ const warrior = document.getElementById("warrior");
 let isDragTurn = true;
 
 export function doBattle() {
+  const width = window.innerWidth;
   if (isDragTurn) {
     isDragTurn = false;
     const dragList = drag.className;
     drag.classList = warrior.classList;
     setTimeout(() => {
       drag.className = dragList;
-    }, 200);
+    }, width / 2);
   } else {
     isDragTurn = true;
     const warriorList = warrior.className;
     warrior.classList = drag.classList;
     setTimeout(() => {
       warrior.className = warriorList;
-    }, 200);
+    }, width / 1.5);
   }
 }
 
