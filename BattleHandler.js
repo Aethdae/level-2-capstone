@@ -2,14 +2,16 @@ const drag = document.getElementById("dragon");
 const warrior = document.getElementById("warrior");
 const battleArea = document.getElementById("battleArea");
 const damageNumClasses = [
-  "p-1",
+  "p-2",
   "bg-gray-200/80",
-  "rounded-md",
+  "rounded-2xl",
   "border-2",
-  "border-black",
+  "border-black/20",
+  "font-bold",
+  "text-lg",
 ];
 
-let isDragTurn = true;
+let isDragTurn = Math.random <= 0.5;
 
 export function doBattle() {
   const width = window.innerWidth;
@@ -17,7 +19,9 @@ export function doBattle() {
     isDragTurn = false;
     const dragList = drag.className;
     drag.classList = warrior.classList;
-    displayDamage(warrior);
+    if (document.visibilityState === "visible") {
+      displayDamage(warrior);
+    }
     setTimeout(() => {
       drag.className = dragList;
     }, width / 2);
@@ -25,7 +29,9 @@ export function doBattle() {
     isDragTurn = true;
     const warriorList = warrior.className;
     warrior.classList = drag.classList;
-    displayDamage(drag);
+    if (document.visibilityState === "visible") {
+      displayDamage(drag);
+    }
     setTimeout(() => {
       warrior.className = warriorList;
     }, width / 1.5);
@@ -43,8 +49,13 @@ function displayDamage(damageReciever) {
   damageNum.innerText = getDamageNum();
   damageNum.classList = damageReciever.classList;
   damageNum.classList.add(...damageNumClasses);
-  if (isDragTurn) {
+  if (damageReciever === drag) {
     setTimeout(() => {
+      drag.classList.add("translate-x-[16px]");
+      setTimeout(() => {
+        drag.classList.remove("translate-x-[16px]");
+      }, 200);
+
       damageNum.classList.remove("top-[2%]");
       damageNum.classList.add("top-[-8%]");
       setTimeout(() => {
@@ -53,6 +64,10 @@ function displayDamage(damageReciever) {
     }, 1);
   } else {
     setTimeout(() => {
+      warrior.classList.add("translate-x-[-16px]");
+      setTimeout(() => {
+        warrior.classList.remove("translate-x-[-16px]");
+      }, 200);
       damageNum.classList.remove("top-[50%]");
       damageNum.classList.add("top-[40%]");
       setTimeout(() => {
