@@ -46,7 +46,7 @@ export function startBattle() {
 
 function displayDamage(damageReciever) {
   const damageNum = document.createElement("p");
-  damageNum.innerText = getDamageNum();
+  damageNum.textContent = getDamageNum();
   damageNum.classList = damageReciever.classList;
   damageNum.classList.add(...damageNumClasses);
   if (damageReciever === drag) {

@@ -1,5 +1,7 @@
 const baseCardClasses =
-  "max-w-[70%] even:self-start odd:self-end max-w-[70%] p-2 rounded-3xl border-2 shadow-xl even:bg-blue-300 odd:bg-green-300";
+  "max-w-[70%] max-w-[70%] p-2 rounded-3xl border-2 shadow-xl even:bg-blue-300 odd:bg-green-300";
+const userClasses = "self-end";
+const aiClasses = "self-start";
 
 export class UserResponse {
   constructor(previous, response, apiKey) {
@@ -25,7 +27,7 @@ export class UserResponse {
         "https://generativelanguage.googleapis.com/v1beta/interactions",
         options,
       );
-      if (res.status === 429 || res.status === 403) {
+      if (!res.ok) {
         this.renderError(res.status);
         return;
       }
@@ -41,7 +43,7 @@ export class UserResponse {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses;
+    bubble.className = baseCardClasses + " " + userClasses;
 
     text.textContent = this.response;
     container.appendChild(bubble);
@@ -52,6 +54,8 @@ export class UserResponse {
     const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
+
+    bubble.className = baseCardClasses + " " + aiClasses;
 
     text.textContent = `Request failed with a ${status} error. Please try again later.`;
     container.appendChild(bubble);
@@ -70,7 +74,7 @@ export class AIResponse {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses;
+    bubble.className = baseCardClasses + " " + aiClasses;
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
@@ -81,6 +85,8 @@ export class AIResponse {
 export class AIBeginning {
   constructor(apiKey) {
     this.apiKey = apiKey;
+    this.previous = "";
+    this.response = "";
   }
   async getInitial() {
     const options = {
@@ -100,14 +106,13 @@ export class AIBeginning {
         "https://generativelanguage.googleapis.com/v1beta/interactions",
         options,
       );
-      if (res.status === 429 || res.status === 403) {
+      if (!res.ok) {
         this.renderError(res.status);
         return;
       }
       const data = await res.json();
       this.previous = data.id;
       this.response = data.outputs[1].text;
-      console.log(this);
     } catch (error) {
       console.log(error);
     }
@@ -117,7 +122,7 @@ export class AIBeginning {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses;
+    bubble.className = baseCardClasses + " " + aiClasses;
 
     text.textContent = this.response;
     container.appendChild(bubble);
@@ -128,6 +133,8 @@ export class AIBeginning {
     const container = document.getElementById("outputContainer");
     const bubble = document.createElement("div");
     const text = document.createElement("p");
+
+    bubble.className = baseCardClasses + " " + aiClasses;
 
     text.textContent = `Request failed with a ${status} error. Please try again later.`;
     container.appendChild(bubble);
