@@ -23,6 +23,7 @@ async function main() {
     event.preventDefault();
     fakeRender(
       "Sample text ofeiaj foieaj foieaj foieaj f ofeiaj foieaj foieaj foieaj f ",
+      Math.random() < 0.5 ? true : false,
     );
   });
   //const apiKey = await getKey();
@@ -49,18 +50,18 @@ async function main() {
 
 //! Remove before post
 function fakeRender(text, isRight) {
-  const userClasses = "self-end";
-  const aiClasses = "self-start";
+  const userClasses = ["self-end", "bg-green-300"];
+  const aiClasses = ["self-start", "bg-blue-300"];
   const container = document.getElementById("outputContainer");
   const bubble = document.createElement("div");
   const text2 = document.createElement("p");
 
   bubble.className =
-    "max-w-[70%] odd:self-end even:self-start max-w-[70%] p-2 rounded-3xl border-2 shadow-xl even:bg-blue-300 odd:bg-green-300";
+    "max-w-[70%] max-w-[70%] p-2 rounded-3xl border-2 shadow-xl";
   if (isRight) {
-    bubble.classList.add(userClasses);
+    bubble.classList.add(...userClasses);
   } else {
-    bubble.classList.add(aiClasses);
+    bubble.classList.add(...aiClasses);
   }
 
   text2.textContent = text;

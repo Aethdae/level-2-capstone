@@ -1,0 +1,16 @@
+#outputContainer::-webkit-scrollbar {
+  background: black;
+  width: 6px;
+  height: 100%;
+  outline: 2px solid white;
+  border-radius: 140px;
+}
+
+#outputContainer::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 140px;
+}
+
+#outputContainer::-webkit-scrollbar-button {
+  display: none;
+}

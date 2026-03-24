@@ -1,7 +1,13 @@
-const baseCardClasses =
-  "max-w-[70%] max-w-[70%] p-2 rounded-3xl border-2 shadow-xl even:bg-blue-300 odd:bg-green-300";
-const userClasses = "self-end";
-const aiClasses = "self-start";
+const baseCardClasses = [
+  "max-w-[70%]",
+  "max-w-[70%]",
+  "p-2",
+  "rounded-3xl",
+  "border-2",
+  "shadow-xl",
+];
+const userClasses = ["self-end", "bg-green-300"];
+const aiClasses = ["self-start", "bg-blue-300"];
 
 export class UserResponse {
   constructor(previous, response, apiKey) {
@@ -43,7 +49,7 @@ export class UserResponse {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses + " " + userClasses;
+    bubble.classList.add(...baseCardClasses, ...userClasses);
 
     text.textContent = this.response;
     container.appendChild(bubble);
@@ -55,7 +61,7 @@ export class UserResponse {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses + " " + aiClasses;
+    bubble.classList.add(...baseCardClasses, ...aiClasses);
 
     text.textContent = `Request failed with a ${status} error. Please try again later.`;
     container.appendChild(bubble);
@@ -74,7 +80,7 @@ export class AIResponse {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses + " " + aiClasses;
+    bubble.classList.add(...baseCardClasses, ...aiClasses);
     text.textContent = this.response;
     container.appendChild(bubble);
     bubble.appendChild(text);
@@ -122,7 +128,7 @@ export class AIBeginning {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses + " " + aiClasses;
+    bubble.classList.add(...baseCardClasses, ...aiClasses);
 
     text.textContent = this.response;
     container.appendChild(bubble);
@@ -134,7 +140,7 @@ export class AIBeginning {
     const bubble = document.createElement("div");
     const text = document.createElement("p");
 
-    bubble.className = baseCardClasses + " " + aiClasses;
+    bubble.classList.add(...baseCardClasses, ...aiClasses);
 
     text.textContent = `Request failed with a ${status} error. Please try again later.`;
     container.appendChild(bubble);
