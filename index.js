@@ -1,4 +1,4 @@
-import { UserResponse, AIBeginning, showChatInitial } from "./Responses.js";
+import { UserResponse, AIBeginning } from "./Responses.js";
 import { getKey } from "./keys.js";
 import { createEvent } from "./ChatHandler.js";
 import { startBattle } from "./BattleHandler.js";
@@ -18,7 +18,6 @@ async function main() {
   startBattle();
 
   const apiKey = await getKey();
-  showChatInitial();
 
   let prevReponseID = "";
   const begin = new AIBeginning(apiKey);
