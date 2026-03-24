@@ -1,4 +1,4 @@
-import { UserResponse, AIBeginning } from "./Responses.js";
+import { UserResponse, AIBeginning, showChatInitial } from "./Responses.js";
 import { getKey } from "./keys.js";
 import { createEvent } from "./ChatHandler.js";
 import { startBattle } from "./BattleHandler.js";
